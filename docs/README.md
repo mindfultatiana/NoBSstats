@@ -1,4 +1,4 @@
-# noBS STATS Notebooks
+# No Bullshit Guide to Statistics Notebooks
 
 Hands-on tutorials, exercises, and projects to accompany the **No Bullshit Guide to Statistics**.
 Motivation: reading about stats is not enough... you need to experiment with stats,
