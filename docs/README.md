@@ -64,9 +64,3 @@ root of this project.
     [assert statements](https://datascienceinpractice.github.io/assignments/D2_Pandas.html)
     We'll be taking this idea to the next level by asking learners to define a callable.
 
-
-
-### TODOs
-
-- write CI script to strip out exercise solutions from notebooks
-
