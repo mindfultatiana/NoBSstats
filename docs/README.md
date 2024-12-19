@@ -16,24 +16,24 @@ Use the binder button below to start an ephemeral JupyterLab instance where you 
 Once have launched JupyterLab instance, use the file browser (folder icon in the left pane)
 to navigate to any of these subfolders and try the notebooks in them:
 
-- [`datasets/`](./datasets/): all the data used for examples, exercises, and problems in the book.
-- [`notebooks/`](./notebooks/): notebooks to accompany each section of the book.
-- [`stats_overview/`](./stats_overview/): a complete worked example to introduce
+- [`datasets/`](./docs/datasets/): all the data used for examples, exercises, and problems in the book.
+- [`notebooks/`](./docs/notebooks/): notebooks to accompany each section of the book.
+- [`stats_overview/`](./docs/stats_overview/): a complete worked example to introduce
   all the statistics concepts from the book: DATA, PROB, STATS, and LINEAR MODELS.
-- [`exercises/`](./exercises/): simple, routine exercises to practice new concepts.
-- [`problems/`](./problems/): problems requiring some thinking **COMING SOON**
-- [`missions/`](./missions/): multi-step procedures and workflows **COMING SOON**
-- [`tutorials/`](./tutorials/): tutorials that introduce Python basics, and the Pandas and Seaborn Python libraries.
+- [`exercises/`](./docs/exercises/): simple, routine exercises to practice new concepts.
+- [`problems/`](./docs/problems/): problems requiring some thinking **COMING SOON**
+- [`missions/`](./docs/missions/): multi-step procedures and workflows **COMING SOON**
+- [`tutorials/`](./docs/tutorials/): tutorials that introduce Python basics, and the Pandas and Seaborn Python libraries.
 
 
 ## Other stuff
 
 This repo also contains the "utility" code and notebooks that were used for the book:
 
-- [`data_generation`](./data_generation): notebooks used to generate datasets used in the book.
-- [`figures_generation`](./figures_generation): notebooks to run to generate figures and tables.
-- [`notebooks/explorations/`](./notebooks/explorations/): general exploratory notebooks on statistics.
-- [`notebooks/drafts/`](./notebooks/drafts/): notebook drafts (not ready for prime time).
+- [`data_generation`](./docs/data_generation): notebooks used to generate datasets used in the book.
+- [`figures_generation`](./docs/figures_generation): notebooks to run to generate figures and tables.
+- [`notebooks/explorations/`](./docs/notebooks/explorations/): general exploratory notebooks on statistics.
+- [`notebooks/drafts/`](./docs/notebooks/drafts/): notebook drafts (not ready for prime time).
 
 
 ### Tech stack
