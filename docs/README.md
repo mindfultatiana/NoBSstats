@@ -22,7 +22,6 @@ to navigate to any of these subfolders and try the notebooks in them:
   all the statistics concepts from the book: DATA, PROB, STATS, and LINEAR MODELS.
 - [`exercises/`](./exercises/): simple, routine exercises to practice new concepts.
 - [`problems/`](./problems/): problems requiring some thinking 
-- [`missions/`](./missions/): multi-step procedures and workflows 
 - [`tutorials/`](./tutorials/): tutorials that introduce Python basics, and the Pandas and Seaborn Python libraries.
 
 
