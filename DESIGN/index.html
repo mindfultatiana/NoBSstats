@@ -1,0 +1,1770 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Software design - No Bullshit Guide to Statistics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="No Bullshit Guide to Statistics" class="md-header__button md-logo" aria-label="No Bullshit Guide to Statistics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            No Bullshit Guide to Statistics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="No Bullshit Guide to Statistics" class="md-nav__button md-logo" aria-label="No Bullshit Guide to Statistics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    No Bullshit Guide to Statistics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chapter 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/10_DATA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/11_intro_to_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 1.1 — Introduction to data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/12_data_in_practice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 1.2 — Data in practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/13_descriptive_statistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 1.3 — Descriptive statistics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chapter 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/20_PROB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Probability Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/21_discrete_random_vars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.1 — Discrete random variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/22_multiple_random_vars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.2 — Multiple random variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/23_inventory_discrete_dists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.3 — Inventory of discrete distributions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/24_calculus_prerequisites/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.4 — Calculus prerequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/25_continuous_random_vars/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.5 — Continuous random variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/26_inventory_continuous_dists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.6 — Inventory of continuous distributions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/27_random_var_generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.7 — Random variable generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/28_random_samples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 2.8 — Probability models for random samples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chapter 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/30_STATS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inferential Statistics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/31_estimators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.1 — Estimators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/32_confidence_intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.2 — Confidence intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/33_intro_to_NHST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.3 — Introduction to hypothesis testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/34_analytical_approx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.4 — Hypothesis testing using analytical approximations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/OLD34_analytical_approximation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OLD Section 3.4 — Analytical approximation methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/35_two_sample_tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.5 — Two-sample hypothesis tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/36_design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.6 — Statistical design and error analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/37_inventory_stats_tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 3.7 — Inventory of statistical tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chapter 4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/40_LINEAR_MODELS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebook/41_simple_linear_regression.ipynb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Linear Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebook/42_multiple_linear_regression.ipynb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Linear Regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebook/43_interpreting_linear_models.ipynb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interpreting Linear Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/44_regression_with_categorical_predictors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 4.4 — Regression with categorical predictors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/45_causal_inference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 4.5 — Model selection for causal inference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/46_generalized_linear_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 4.6 — Generalized linear models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/40_extra_cut_material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CH4 extra stuff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chapter 5
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Chapter 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/50_BAYESIAN_STATS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bayesian Statistics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/51_intro_to_Bayesian_stats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 5.1 — Introduction to Bayesian statistics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/52_Bayesian_inference_computations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 5.2 — Bayesian inference computations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/53_Bayesian_linear_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 5.3 — Bayesian linear models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/54_difference_between_means/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 5.4 — Bayesian difference between means
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/55_hierarchical_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Section 5.5 — Hierarchical models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Appendix
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Appendix
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/appendix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/cut_material.ipynb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cut Material
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/pandas_tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix D — Pandas tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/python_tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix C — Python tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/99_mean_estimation_details/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sampling distribution of the mean details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/99_proportions_estimators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Estimators for categorical variables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/seaborn_tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix E — Seaborn tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming conventions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sampling-distribution-generator-known-rv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling distribution generator (known RV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-sampling-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bootstrap sampling distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulation-based-hypothesis-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation-based hypothesis test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permutation-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permutation test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permutation test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach-1-from-stats-overview-nov-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 1: from stats overview (Nov 2021)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-2-attempted-refactoring-dec-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 2: attempted refactoring (Dec 2022)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-3-infer-like-verbs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 3: infer-like verbs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach-4-numpy-arrays-winner" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach 4: numpy arrays (winner!)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="software-design">Software design</h1>
+<p>In order for this book to be successful the code examples must be solid.
+Statistics is a complicated topic, and for readers who have no prior experience programming
+the complexity of statistics will be compounded by the complexity of learning Python syntax.</p>
+<p>I want the Python code examples to be simple and ideally self-explanatory.
+I want the reader to think "yes, this makes sense" when they see each code block,
+and support the text narrative, rather than see the code examples as additional stumbling blocks.</p>
+<p>Goals:</p>
+<ul>
+<li>Keep it pythonic: follow standard conventions for naming an source formatting.</li>
+<li>Make it general enough, but not too general:
+  helper functions should be able to handle all the cases for the book,
+  but not generalize beyound what is necessary.</li>
+<li>Make it simple: don't use fancy Python features that beginners might not be familiar with.</li>
+</ul>
+<h2 id="naming-conventions">Naming conventions</h2>
+<h3 id="general">General</h3>
+<ul>
+<li>Do not reuse variable names in the same notebook (e.g. if you define <code>rvX</code> in
+  the beginning, don't redefine it to be a different thing later on).</li>
+</ul>
+<h3 id="datasets">Datasets</h3>
+<ul>
+<li><code>eprices</code> (df): the dataframe loaded from <code>datasets/eprices.csv</code></li>
+<li><code>eprices{W}</code> (df): the subset of the rows from data frame for group <code>{W}</code></li>
+<li><code>pricesW</code> and <code>pricesE</code> (array or series): of the <code>price</code> data column </li>
+<li><code>ksample</code>: kombucha volumes sample, also <code>ksample02</code>, <code>ksample03</code>, from different batches</li>
+<li><code>asample</code>: apples weights </li>
+<li><code>scoresR</code> and <code>scoresU</code>: the values of the two groups of sleep scores form the <code>doctors</code> dataset</li>
+</ul>
+<p>Sampling distributions:</p>
+<ul>
+<li><code>xbars20</code>: sampling distribution of the mean for samples of size <code>n=20</code> from the random variable <code>rvX</code>.</li>
+<li><code>xvars20</code>: sampling distribution of the variance for samples of size <code>n=20</code> from  <code>rvX</code>.</li>
+</ul>
+<p>Sampling and resampling conventions:
+- <code>{x}sample</code>: generated sample from <code>rvX</code> by simulation.<br />
+  Optionally include sample size, e.g. <code>{x}sample20</code> for sample of size $n=20$.
+- <code>rsample</code>: sample generated using resampling (e.g. permutation test) 
+- <code>bsample</code>: bootstrap sample generated from <code>sample</code></p>
+<p>Data frames full of samples or resamples (not currently used in user-facing code):
+- <code>{x}samples_df</code>: dataframe that contains multiple<code>{x}samples</code> (identified by value in <code>sample</code> column)
+- <code>rsamples_df</code>: a DataFrame that contains data from <code>R</code> <code>rsample</code>s
+  and has an extra column <code>rep=1:n</code> (to imitate <code>replicate</code> col used by <code>infer</code>).
+- <code>bsamples_df</code>: a DataFrame that contains data from <code>B</code> <code>bsample</code>s</p>
+<h2 id="code-structure">Code structure</h2>
+<h3 id="sampling-distribution-generator-known-rv">Sampling distribution generator (known RV)</h3>
+<p>See function <code>gen_sampling_dist</code> in <a href="https://github.com/minireference/ministats/blob/main/ministats/sampling.py"><code>ministats/sampling.py</code></a>.</p>
+<h3 id="bootstrap-sampling-distribution">Bootstrap sampling distribution</h3>
+<p>See function <code>gen_boot_dist</code> in <a href="https://github.com/minireference/ministats/blob/main/ministats/sampling.py"><code>ministats/sampling.py</code></a>.</p>
+<h3 id="simulation-based-hypothesis-test">Simulation-based hypothesis test</h3>
+<p>See functions <code>simulation_test_mean</code> in <a href="https://github.com/minireference/ministats/blob/main/ministats/hypothesis_tests.py"><code>ministats/hypothesis_tests.py</code></a>.</p>
+<h3 id="permutation-test">Permutation test</h3>
+<p>See functions <code>resample_under_H0</code> and <code>permutation_test</code> in <a href="https://github.com/minireference/ministats/blob/main/ministats/hypothesis_tests.py"><code>ministats/hypothesis_tests.py</code></a>.</p>
+<p>Below we save the old implementations (which were less good).</p>
+<h5 id="approach-1-from-stats-overview-nov-2021">Approach 1: from stats overview (Nov 2021)</h5>
+<pre><code class="language-Python">def dmeans(sample):
+    &quot;&quot;&quot;
+    Compute the difference between groups means.
+    &quot;&quot;&quot;
+    xS = sample[sample[&quot;group&quot;]==&quot;S&quot;][&quot;ELV&quot;]
+    xNS = sample[sample[&quot;group&quot;]==&quot;NS&quot;][&quot;ELV&quot;]
+    d = np.mean(xS) - np.mean(xNS)
+    return d
+
+def resample_under_H0(sample, groupcol=&quot;group&quot;):
+    &quot;&quot;&quot;
+    Return a copy of the dataframe `sample` with the labels in the column `groupcol`
+    modified based on a random permutation of the values in the original sample.
+    &quot;&quot;&quot;
+    resample = sample.copy()
+    labels = sample[groupcol].values
+    newlabels = np.random.permutation(labels)
+    resample[groupcol] = newlabels
+    return resample
+
+# # resample
+# resample = resample_under_H0(data)
+
+# # compute the difference in means for the new labels
+# dmeans(resample)
+
+def permutation_test(sample, statfunc, groupcol=&quot;group&quot;, permutations=10000):
+    &quot;&quot;&quot;
+    Compute the p-value of the observed `statfunc(sample)` under the null hypothesis
+    where the labels in the `groupcol` are randomized.
+    &quot;&quot;&quot;
+    # 1. compute the observed value of the statistic for the sample
+    obsstat = statfunc(sample)
+
+    # 2. generate the sampling distr. under H0
+    restats = []
+    for i in range(0, permutations):
+        resample = resample_under_H0(sample, groupcol=groupcol)
+        restat = statfunc(resample)
+        restats.append(restat)
+
+    # 3. compute p-value: how many `restat`s are equal-or-more-extreme than `obsstat`
+    tailstats = [restat for restat in restats \
+                 if restat &lt;= -abs(obsstat) or restat &gt;= abs(obsstat)]
+    pvalue = len(tailstats) / len(restats)
+
+    return restats, pvalue
+
+# sampling_dist, pvalue = permutation_test(data, statfunc=dmeans)
+</code></pre>
+<p>Comments:</p>
+<ul>
+<li>The function <code>dmeans</code> is not the same as <code>dmeans</code> used earlier in the book.</li>
+<li>The <code>for</code>-loop in <code>permutation_test</code> could be abstracted into a function.</li>
+</ul>
+<h4 id="approach-2-attempted-refactoring-dec-2022">Approach 2: attempted refactoring (Dec 2022)</h4>
+<pre><code class="language-Python">def resample_under_H0(data, groupcol=&quot;group&quot;):
+    &quot;&quot;&quot;
+    Return a copy of the dataframe `data` with
+    the labels in the column `groupcol` mixed up.
+    &quot;&quot;&quot;
+    redata = data.copy()
+    labels = data[groupcol].values
+    newlabels = np.random.permutation(labels)
+    redata[groupcol] = newlabels    
+    return redata
+
+def gen_sampling_dist_under_H0(data, permutations=10000):
+    &quot;&quot;&quot;
+    Obtain the sampling distribution of `dmeans` under H0
+    by repeatedly permutations of the group labels.
+    &quot;&quot;&quot;
+    pstats = []
+    for i in range(0, permutations):
+        data_perm = resample_under_H0(data, groupcol=&quot;end&quot;)
+        xW_perm = data_perm[data_perm[&quot;end&quot;]==&quot;West&quot;][&quot;price&quot;]
+        xE_perm = data_perm[data_perm[&quot;end&quot;]==&quot;East&quot;][&quot;price&quot;]
+        dhat_perm = dmeans(xW_perm, xE_perm)
+        pstats.append(dhat_perm)
+    return pstats
+
+def permutation_test(data):
+    &quot;&quot;&quot;
+    Compute the p-value of the observed `dmeans(xW,xE)` under H0.
+    &quot;&quot;&quot;
+    # Obtain the sampling distribution of `dmeans` under H0
+    pstats = gen_sampling_dist_under_H0(data)
+
+    # Compute the value of `dmeans` for the observed data
+    xW = eprices[eprices[&quot;end&quot;]==&quot;West&quot;][&quot;price&quot;]
+    xE = eprices[eprices[&quot;end&quot;]==&quot;East&quot;][&quot;price&quot;]
+    dhat = dmeans(xW, xE)
+
+    # Compute p-value of `dhat` under the distribution `pstats` 
+    # (how many of `pstats` are equal-or-more-extreme than `dhat`)
+    tailstats = [pstat for pstat in pstats \
+                 if pstat &lt;= -abs(dhat) or pstat &gt;= abs(dhat)]
+    pvalue = len(tailstats) / len(pstats)
+    return pvalue
+
+</code></pre>
+<p>Comments:</p>
+<ul>
+<li>Seems awkward for <code>gen_sampling_dist_under_H0</code> and <code>permutation_test</code> know
+  about the specifics of the problem.</li>
+</ul>
+<h4 id="approach-3-infer-like-verbs">Approach 3: <code>infer</code>-like verbs</h4>
+<p>It would be nice to imitate the <a href="https://infer.tidymodels.org/reference/index.html">infer API</a>
+and <a href="https://raw.githubusercontent.com/tidymodels/infer/main/figs/ht-diagram.png">process</a>
+so that we don't have to make design choices:</p>
+<ol>
+<li><code>specify()</code> or <code>assume()</code></li>
+<li><code>hypothesize()</code></li>
+<li><code>generate()</code></li>
+<li><code>get_p_value()</code></li>
+<li><code>get_confidence_interval()</code></li>
+</ol>
+<p>I don't really see how to do this yet, but I'm watching the authors of
+<a href="https://github.com/UBC-DSCI/introduction-to-datascience-python/blob/main/source/inference.md#bootstrapping-in-python">UBC-DSCI/introduction-to-datascience-python</a> to see what Python code they will use to imitate infer functionality.</p>
+<h4 id="approach-4-numpy-arrays-winner">Approach 4: numpy arrays (winner!)</h4>
+<ol>
+<li>Extract the data from dataframe when passing to function</li>
+<li>Combine into an long array; permute; return first <code>n</code> and remaining <code>m</code></li>
+<li>Can use ordinary functions <code>dmeans</code> as previously shown.</li>
+</ol>
+<pre><code class="language-Python">def resample_under_H0(sample1, sample2):
+    &quot;&quot;&quot;
+    Generate new samples from a random permutation of the values in two samples.
+    &quot;&quot;&quot;
+    values = np.concatenate((sample1, sample2))
+    shuffled_values = np.random.permutation(values)
+    resample1 = shuffled_values[0:len(sample1)]
+    resample2 = shuffled_values[len(sample1):]
+    return resample1, resample2
+
+# usage:
+# &gt;&gt;&gt; resample_under_H0([1,1,1], [2,2,2,2])
+# (array([2, 2, 1]), array([2, 1, 1, 2]))
+</code></pre>
+<pre><code class="language-Python">def permutation_test(sample1, sample2, statfunc, permutations=10000):
+    &quot;&quot;&quot;
+    Compute the p-value of the observed `statfunc(sample1, sample2)` under
+    the null hypothesis where the group membership is randomized.
+    &quot;&quot;&quot;
+    # 1. compute the observed value of the statistic for the sample
+    obsstat = statfunc(sample1, sample2)
+
+    # 2. Obtain the sampling distribution of `statfunc` under H0
+    pstats = []
+    for i in range(0, permutations):
+        resample1, resample2 = resample_under_H0(sample1, sample2)
+        pstat = statfunc(resample1, resample2)
+        pstats.append(pstat)
+
+    # 3. compute p-value: how many `pstat`s are equal-or-more-extreme than `obsstat`
+    tailstats = [pstat for pstat in pstats \
+                 if pstat &lt;= -abs(obsstat) or pstat &gt;= abs(obsstat)]
+    pvalue = len(tailstats) / len(pstats)
+
+    return pstats, pvalue
+
+# usage:
+# &gt;&gt;&gt; permutation_test(pricesW, pricesE, statfunc=dmeans)[1]
+# 0.0003
+</code></pre>
+<p>Comments:</p>
+<ul>
+<li>Pretty tight... </li>
+<li>Only issue is the <code>[0:len(sample1)]</code> selection which is weird,
+  but we can live with that.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
