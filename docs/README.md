@@ -29,10 +29,10 @@ to navigate to any of these subfolders and try the notebooks in them:
 
 This repo also contains the "utility" code and notebooks that were used for the book:
 
-- [`data_generation`](./tree/main/docs/data_generation): notebooks used to generate datasets used in the book.
-- [`figures_generation`](./tree/main/docs/figures_generation): notebooks to run to generate figures and tables.
-- [`notebooks/explorations/`](./tree/main/docs/notebooks/explorations/): general exploratory notebooks on statistics.
-- [`notebooks/drafts/`](./tree/main/docs/notebooks/drafts/): notebook drafts (not ready for prime time).
+- [`data_generation`](./data_generation): notebooks used to generate datasets used in the book.
+- [`figures_generation`](./figures_generation): notebooks to run to generate figures and tables.
+- [`notebooks/explorations/`](./notebooks/explorations/): general exploratory notebooks on statistics.
+- [`notebooks/drafts/`](./notebooks/drafts/): notebook drafts (not ready for prime time).
 
 
 ### Tech stack
