@@ -16,14 +16,14 @@ Use the binder button below to start an ephemeral JupyterLab instance where you 
 Once have launched JupyterLab instance, use the file browser (folder icon in the left pane)
 to navigate to any of these subfolders and try the notebooks in them:
 
-- [`datasets/`](./docs/datasets/exercises/): all the data used for examples, exercises, and problems in the book.
-- [`notebooks/`](./docs/notebooks/): notebooks to accompany each section of the book.
-- [`stats_overview/`](./docs/stats_overview/): a complete worked example to introduce
+- [`datasets/`](./datasets/exercises/): all the data used for examples, exercises, and problems in the book.
+- [`notebooks/`](./notebooks/): notebooks to accompany each section of the book.
+- [`stats_overview/`](./stats_overview/): a complete worked example to introduce
   all the statistics concepts from the book: DATA, PROB, STATS, and LINEAR MODELS.
-- [`exercises/`](./docs/exercises/): simple, routine exercises to practice new concepts.
-- [`problems/`](./docs/problems/): problems requiring some thinking 
-- [`missions/`](./docs/missions/): multi-step procedures and workflows 
-- [`tutorials/`](./docs/tutorials/): tutorials that introduce Python basics, and the Pandas and Seaborn Python libraries.
+- [`exercises/`](./exercises/): simple, routine exercises to practice new concepts.
+- [`problems/`](./problems/): problems requiring some thinking 
+- [`missions/`](./missions/): multi-step procedures and workflows 
+- [`tutorials/`](./tutorials/): tutorials that introduce Python basics, and the Pandas and Seaborn Python libraries.
 
 
 ## Other stuff
